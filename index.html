@@ -17,21 +17,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 90vw;
+            max-width: 500px;
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 100px);
-            grid-template-rows: repeat(3, 100px);
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
             gap: 5px;
+            width: 100%;
+            aspect-ratio: 1;
         }
         .cell {
-            width: 100px;
-            height: 100px;
             background-color: #ffb6c1;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2em;
+            font-size: calc(10px + 6vmin);
             cursor: pointer;
         }
         .cell:hover {
@@ -87,6 +89,8 @@
 </head>
 <body>
     <div class="container">
+        <h2 style="color: rgb(218, 42, 139);">Snake Game</h2>
+        <br>
         <div class="grid" id="grid">
             <div class="cell" data-index="0"></div>
             <div class="cell" data-index="1"></div>
@@ -101,6 +105,8 @@
         <div class="scores">
             X Wins: <span id="x-wins">0</span> | O Wins: <span id="o-wins">0</span> | Draws: <span id="draws">0</span>
         </div>
+        <br>
+        <a href="https://sites.google.com/view/mahsua-india">by Mahsua India</a>
     </div>
 
     <!-- The Modal -->
@@ -131,12 +137,14 @@
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
+            resetGame();
         }
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+                resetGame();
             }
         }
 
